@@ -1,8 +1,8 @@
 const { default: mongoose } = require("mongoose");
-
+require('dotenv').config()
 //Function to invoke connection to MongoDB
+mongoose.connect(process.env.MONGODB_URL);
 const connectToMongoDb = () => {
-  mongoose.connect("mongodb://localhost:27017/weam");
   const connection = mongoose.connection;
   connection.on("error", (error) => {
     console.log("error connecting", error);

@@ -1,9 +1,14 @@
-const express = require("express");
+// app.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const db = require('./configs/database.config');
+const userRouter = require('./routes/user.routes');
+
 const app = express();
-const { connectToMongoDb } = require("./configs/database.config");
-require("dotenv").config();
+
+app.use(bodyParser.json());
+app.use('/users', userRouter);
 
 app.listen(8000, () => {
-    console.log("listening");
-    connectToMongoDb()
-  });
+  console.log('Server started on port 3000');
+});
